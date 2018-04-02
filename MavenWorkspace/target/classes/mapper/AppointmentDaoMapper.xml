@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ca.csi5112.Dao.AppointmentDao">
+
+    <!--<resultMap id="appointmentResult" type="Appointment">-->
+        <!--<result property="bookId" column="book_id"/>-->
+        <!--<result property="studentId" column="student_id"/>-->
+        <!--<result property="appointTime" column="appoint_time"/>-->
+        <!--<association property="book" column="book_id" javaType="Book">-->
+            <!--<result property="bookId" column="book_id"/>-->
+            <!--<result property="name" column="name"/>-->
+            <!--<result property="number" column="number"/>-->
+        <!--</association>-->
+    <!--</resultMap>-->
+
+    <insert id="insertAppointment">
+        INSERT INTO appointment (appoint_id, book_id, student_id)
+        VALUES (uuid(), #{bookId}, #{studentId})
+    </insert>
+    
+    <select id="queryHistoryByKey" resultType="Appointment">
+        SELECT
+			a.book_id      "bookId",
+			a.student_id   "studentId",
+			a.appoint_time "appointTime",
+			b.book_id      "book.bookId",
+			b.name         "book.name",
+			b.number       "book.number"
+		FROM
+			appointment a
+		INNER JOIN book b ON a.book_id = b.book_id
+		WHERE
+			a.book_id = #{bookId}
+		AND a.student_id = #{studentId}
+    </select>
+
+
+</mapper>
