@@ -11,9 +11,9 @@
     <title>Book System</title>
 </head>
 <body>
-    <form action="/book/appoint" method="POST" enctype="application/json">
-        <input type="text" id="studentId" name="studentId"/>
-        <input type="text" id="bookId" name="bookId"/>
+    <form action="/book/appoint" method="POST">
+        Student ID: <input type="text" id="studentId" name="studentId"/> <br/>
+        Book ID: <input type="text" id="bookId" name="bookId"/> <br/>
         <input type="submit" id="book"/>
     </form>
 </body>
